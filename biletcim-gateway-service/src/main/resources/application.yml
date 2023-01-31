@@ -1,0 +1,18 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: biletcim-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: biletcim
+          uri: http://localhost:8080
+          predicates:
+            - Path=/users/**,/trips/**,/bookings/**
+        - id: biletcim-payment-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/payment/**
+    
+
